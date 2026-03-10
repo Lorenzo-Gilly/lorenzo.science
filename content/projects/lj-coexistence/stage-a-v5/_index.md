@@ -9,21 +9,37 @@ bookCollapseSection: false
 
 # Stage A — Hysteresis Diagnostic
 
-No-equilibration MCMC diagnostic comparing gas-initialised and droplet-initialised
-chains across temperatures $T^* = 0.350$–$0.450$ (step 0.005). 5 independent
-chains per initialisation type, 100K sweeps, $N = 32, 64, 128$.
+This diagnostic tests whether the system remembers its initial configuration
+at each temperature. We run two sets of Markov chain Monte Carlo (MCMC)
+simulations starting from opposite states:
 
-See the **[Experimental Setup & Plot Guide](methods/)** for full details on MCMC
-parameters, initialisation protocols, what the shaded bands mean, and how
-to read every plot on this page.
+- **Gas-initialised** — particles placed randomly (uniform gas)
+- **Droplet-initialised** — particles arranged in a compact hexagonal cluster
+
+If both sets of chains converge to the same energy at a given temperature, the
+system has equilibrated and the initial state is forgotten. If they remain
+separated, the chains are kinetically trapped — there is a free-energy barrier
+between the gas and droplet phases.
+
+The temperature where the two sets of chains first merge is an estimate of
+$T^*_\text{dew}$, the dew-point temperature.
+
+**Parameters:** 21 temperatures from $T^* = 0.350$ to $0.450$ (step 0.005),
+5 independent chains per initialisation type, 100,000 sweeps per chain,
+no equilibration discarded. System sizes $N = 32, 64, 128$ particles.
+
+See the **[Experimental Setup & Plot Guide](methods/)** for MCMC parameters,
+step-size calibration, order parameter definition, and how to read each plot.
 
 ---
 
 ## Interactive Viewers
 
-Each viewer shows the energy time series (gas vs drop init) with a
-click-to-lock cursor linked to particle configuration snapshots below.
-Hover over the energy plot to scrub through snapshots in real time.
+Each viewer shows the energy per particle $E/N$ as a function of sweep number
+(blue = gas-initialised, red = droplet-initialised). The shaded band shows
+$\pm 1$ standard deviation across the 5 chains. Hover over the energy plot
+to scrub through particle configuration snapshots below, where red particles
+belong to the largest connected cluster.
 
 ### N = 32
 
@@ -56,39 +72,49 @@ Hover over the energy plot to scrub through snapshots in real time.
 
 ### Hysteresis Summary
 
-The hysteresis plots show the mean energy gap $\Delta E = E_\text{gas} - E_\text{drop}$
-as a function of $T^*$, averaged over sweeps 10K–50K. The gap vanishes at
-$T^* \approx 0.405$, consistent with $T^*_\text{dew} = 0.405 \pm 0.002$.
+Three-panel summary averaged over sweeps 10K–50K (discarding early relaxation):
+
+1. **Energy per particle** — gas-init (blue) and droplet-init (red) mean
+   $\langle E/N \rangle$ vs temperature. Where the two curves merge, the
+   energy gap $\Delta E$ vanishes.
+2. **Droplet fraction** — fraction of time the cluster order parameter exceeds
+   0.5 (i.e. more than half the particles form a single cluster). When the
+   gas-init and droplet-init curves meet, both chain types spend the same
+   fraction of time in each phase.
+3. **Phase ratio** $R_\text{op}$ — log-scale ratio of gas-like to droplet-like
+   time. $R_\text{op} = 1$ (log $R_\text{op} = 0$) marks the dew point.
+
+The vertical dashed line shows $T^*_\text{dew} \approx 0.405$.
 
 #### N = 32
 ![N=32 Hysteresis](/lorenzo.science/viewers/stage-a-v5/N32/N32_hysteresis_10K_50K.png)
 
-| Energy (cold) | Energy (hot) |
-|---------------|-------------|
+| Energy time series ($T^* = 0.35$–$0.395$) | Energy time series ($T^* = 0.40$–$0.45$) |
+|---|---|
 | ![](/lorenzo.science/viewers/stage-a-v5/N32/N32_energy_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N32/N32_energy_T040_T045.png) |
 
-| Cluster OP (cold) | Cluster OP (hot) |
-|-------------------|-----------------|
+| Energy + order parameter ($T^* = 0.35$–$0.395$) | Energy + order parameter ($T^* = 0.40$–$0.45$) |
+|---|---|
 | ![](/lorenzo.science/viewers/stage-a-v5/N32/N32_clusterop_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N32/N32_clusterop_T040_T045.png) |
 
 #### N = 64
 ![N=64 Hysteresis](/lorenzo.science/viewers/stage-a-v5/N64/N64_hysteresis_10K_50K.png)
 
-| Energy (cold) | Energy (hot) |
-|---------------|-------------|
+| Energy time series ($T^* = 0.35$–$0.395$) | Energy time series ($T^* = 0.40$–$0.45$) |
+|---|---|
 | ![](/lorenzo.science/viewers/stage-a-v5/N64/N64_energy_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N64/N64_energy_T040_T045.png) |
 
-| Cluster OP (cold) | Cluster OP (hot) |
-|-------------------|-----------------|
+| Energy + order parameter ($T^* = 0.35$–$0.395$) | Energy + order parameter ($T^* = 0.40$–$0.45$) |
+|---|---|
 | ![](/lorenzo.science/viewers/stage-a-v5/N64/N64_clusterop_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N64/N64_clusterop_T040_T045.png) |
 
 #### N = 128
 ![N=128 Hysteresis](/lorenzo.science/viewers/stage-a-v5/N128/N128_hysteresis_10K_50K.png)
 
-| Energy (cold) | Energy (hot) |
-|---------------|-------------|
+| Energy time series ($T^* = 0.35$–$0.395$) | Energy time series ($T^* = 0.40$–$0.45$) |
+|---|---|
 | ![](/lorenzo.science/viewers/stage-a-v5/N128/N128_energy_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N128/N128_energy_T040_T045.png) |
 
-| Cluster OP (cold) | Cluster OP (hot) |
-|-------------------|-----------------|
+| Energy + order parameter ($T^* = 0.35$–$0.395$) | Energy + order parameter ($T^* = 0.40$–$0.45$) |
+|---|---|
 | ![](/lorenzo.science/viewers/stage-a-v5/N128/N128_clusterop_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N128/N128_clusterop_T040_T045.png) |
