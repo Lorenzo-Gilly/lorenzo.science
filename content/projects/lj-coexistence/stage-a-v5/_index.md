@@ -43,7 +43,7 @@ belong to the largest connected cluster.
 
 ### N = 32
 
-<iframe src="/lorenzo.science/viewers/stage-a-v5/N32/index.html" width="100%" height="700px"
+<iframe src="/lorenzo.science/viewers/stage-a-v5/N32/index.html" width="100%" height="1100px"
   style="border: 1px solid #333; border-radius: 6px; background: #1a1a2e;"></iframe>
 
 [Open full-page N=32 viewer](/lorenzo.science/viewers/stage-a-v5/N32/index.html)
@@ -52,7 +52,7 @@ belong to the largest connected cluster.
 
 ### N = 64
 
-<iframe src="/lorenzo.science/viewers/stage-a-v5/N64/index.html" width="100%" height="700px"
+<iframe src="/lorenzo.science/viewers/stage-a-v5/N64/index.html" width="100%" height="1100px"
   style="border: 1px solid #333; border-radius: 6px; background: #1a1a2e;"></iframe>
 
 [Open full-page N=64 viewer](/lorenzo.science/viewers/stage-a-v5/N64/index.html)
@@ -61,7 +61,7 @@ belong to the largest connected cluster.
 
 ### N = 128
 
-<iframe src="/lorenzo.science/viewers/stage-a-v5/N128/index.html" width="100%" height="700px"
+<iframe src="/lorenzo.science/viewers/stage-a-v5/N128/index.html" width="100%" height="1100px"
   style="border: 1px solid #333; border-radius: 6px; background: #1a1a2e;"></iframe>
 
 [Open full-page N=128 viewer](/lorenzo.science/viewers/stage-a-v5/N128/index.html)

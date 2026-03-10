@@ -22,7 +22,7 @@ for calibrating a normalizing flow model of the gas-liquid transition.
 
 $$T^*_\text{dew}(\rho^* = 0.08) = 0.405 \pm 0.002$$
 
-Established by Stage B equal-weight long runs ($N = 64$, $N = 128$). The
+Determined from long MCMC runs at $N = 64$ and $N = 128$. The
 finite-size shift from $N = 64$ to $N = 128$ is only 0.001 — negligible.
 
 ## Experiments
