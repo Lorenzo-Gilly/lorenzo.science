@@ -10,16 +10,12 @@ math: true
 # Stage A v5 — Hysteresis Diagnostic
 
 No-equilibration MCMC diagnostic comparing gas-initialised and droplet-initialised
-chains across temperatures $T^* = 0.350$–$0.450$ (step 0.005).
+chains across temperatures $T^* = 0.350$–$0.450$ (step 0.005). 5 independent
+chains per initialisation type, 100K sweeps, $N = 32, 64, 128$.
 
-## Method
-
-For each temperature and system size:
-- **3 gas-init chains** (random uniform with excluded volume)
-- **3 drop-init chains** (hexagonal cluster, lattice spacing $a = 2^{1/6}\sigma$)
-- 100K sweeps total, no equilibration discard
-- Energy sampled every 10 sweeps; cluster OP ($r_\text{cluster} = 1.5\sigma$) every 1000 sweeps
-- Snapshots saved for interactive playback
+**[Experimental Setup & Plot Guide](methods/)** — full details on MCMC
+parameters, initialisation protocols, what the shaded bands mean, and how
+to read every plot on this page.
 
 ## Interactive Viewers
 
