@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; background: #1a1a2e; display: flex; justify-content: center;
+         align-items: flex-start; min-height: 100vh; padding: 8px; overflow: auto; }
+  img { max-width: 100%; height: auto; }
+</style>
+</head><body>
+<img id="plot-img">
+<script>
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById('plot-img').src = params.get('src') || '';
+</script>
+</body></html>

@@ -53,9 +53,12 @@
 <iframe id="viewer-frame" src=""></iframe>
 <div class="links">
   Static plots:
-  <a href="N128_energy_T035_T039.png">energy T035_T039</a> &nbsp;|&nbsp; <a href="N128_clusterop_T035_T039.png">cluster OP T035_T039</a> &nbsp;|&nbsp; <a href="N128_energy_T040_T045.png">energy T040_T045</a> &nbsp;|&nbsp; <a href="N128_clusterop_T040_T045.png">cluster OP T040_T045</a> &nbsp;|&nbsp; <a href="N128_hysteresis_10K_50K.png">hysteresis</a>
+  <a href="#" onclick="loadPlot('N128_energy_T035_T039.png');return false;">energy T035_T039</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_clusterop_T035_T039.png');return false;">cluster OP T035_T039</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_energy_T040_T045.png');return false;">energy T040_T045</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_clusterop_T040_T045.png');return false;">cluster OP T040_T045</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_hysteresis_10K_50K.png');return false;">hysteresis</a>
 </div>
 <script>
+function loadPlot(filename) {
+  document.getElementById("viewer-frame").src = "plot_viewer.html?src=" + encodeURIComponent(filename);
+}
 function loadTemp() {
   const tk = document.getElementById('temp-select').value;
   document.getElementById('viewer-frame').src =

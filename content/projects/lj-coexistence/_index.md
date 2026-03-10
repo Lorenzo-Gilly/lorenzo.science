@@ -18,13 +18,6 @@ temperature at low gas density. This is the temperature below which a
 liquid droplet becomes thermodynamically stable, and is the entry point
 for calibrating a normalizing flow model of the gas-liquid transition.
 
-## Key Result
-
-$$T^*_\text{dew}(\rho^* = 0.08) = 0.405 \pm 0.002$$
-
-Determined from long MCMC runs at $N = 64$ and $N = 128$. The
-finite-size shift from $N = 64$ to $N = 128$ is only 0.001 — negligible.
-
 ## Experiments
 
 - [**Stage A** — Hysteresis diagnostic with interactive viewers](stage-a-v5/)

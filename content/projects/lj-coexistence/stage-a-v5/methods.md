@@ -281,7 +281,7 @@ from all chains within the 10K–50K sweep window (pooled).
 
 $$T^* \in \{0.350,\; 0.355,\; 0.360,\; \ldots,\; 0.445,\; 0.450\}$$
 
-This range brackets the dew point $T^*_\text{dew} = 0.405 \pm 0.002$.
+This range is chosen to bracket the expected dew point $T^*_\text{dew}$.
 Below $T^*_\text{dew}$, the droplet phase is thermodynamically favoured;
 above it, the gas phase is favoured. The diagnostic shows this as
 hysteresis: at cold temperatures, gas-initialised chains eventually nucleate

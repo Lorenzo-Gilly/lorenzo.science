@@ -18,7 +18,7 @@
   #info-bar .lock-hint { color: #888; font-size: 12px; }
   #canvas-wrap { position: relative; margin: 4px 0; }
   canvas { border: 1px solid #333; border-radius: 4px; cursor: crosshair;
-            display: block; }
+            display: block; max-width: 100%; height: auto; }
   #snapshot-wrap { margin: 8px 0; }
   #snapshot-label { text-align: center; font-size: 13px; color: #aaa;
                      margin: 4px 0; }
@@ -288,7 +288,7 @@ function updateDisplay(sweep) {
 canvas.addEventListener('mousemove', function(e) {
   if (locked) return;
   const rect = canvas.getBoundingClientRect();
-  const mx = e.clientX - rect.left;
+  const scaleX = canvas.width / rect.width; const mx = (e.clientX - rect.left) * scaleX;
   hoverSweep = fromX(mx);
   updateDisplay(hoverSweep);
 });
@@ -299,7 +299,7 @@ canvas.addEventListener('click', function(e) {
     if (hoverSweep !== null) updateDisplay(hoverSweep);
   } else {
     const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
+    const scaleX = canvas.width / rect.width; const mx = (e.clientX - rect.left) * scaleX;
     lockedSweep = fromX(mx);
     locked = true;
     updateDisplay(lockedSweep);
