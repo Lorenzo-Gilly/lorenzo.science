@@ -84,7 +84,8 @@ Three-panel summary averaged over sweeps 10K–50K (discarding early relaxation)
 3. **Phase ratio** $R_\text{op}$ — log-scale ratio of gas-like to droplet-like
    time. $R_\text{op} = 1$ (log $R_\text{op} = 0$) marks the dew point.
 
-The vertical dashed line shows $T^*_\text{dew} \approx 0.405$.
+The data shows the energy gap closing and the droplet fractions merging
+around $T^* \approx 0.40$–$0.41$.
 
 #### N = 32
 ![N=32 Hysteresis](/lorenzo.science/viewers/stage-a-v5/N32/N32_hysteresis_10K_50K.png)
