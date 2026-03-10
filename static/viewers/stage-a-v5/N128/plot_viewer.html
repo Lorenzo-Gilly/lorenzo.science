@@ -12,4 +12,5 @@
   const params = new URLSearchParams(window.location.search);
   document.getElementById('plot-img').src = params.get('src') || '';
 </script>
+<script>new ResizeObserver(function(){window.parent.postMessage({type:"contentResize",height:document.body.scrollHeight},"*")}).observe(document.body);</script>
 </body></html>

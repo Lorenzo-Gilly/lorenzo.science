@@ -19,11 +19,11 @@
   #canvas-wrap { position: relative; margin: 4px 0; }
   canvas { border: 1px solid #333; border-radius: 4px; cursor: crosshair;
             display: block; max-width: 100%; height: auto; }
-  #snapshot-wrap { margin: 8px 0; }
+  #snapshot-wrap { margin: 4px 0; flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; overflow: hidden; }
   #snapshot-label { text-align: center; font-size: 13px; color: #aaa;
                      margin: 4px 0; }
-  #snapshot-img { border: 2px solid #333; border-radius: 4px;
-                   max-width: 95vw; display: block; margin: 0 auto; }
+  #snapshot-img { border: 2px solid #333; border-radius: 4px; object-fit: contain;
+                   max-width: 95vw; max-height: 100%; display: block; margin: 0 auto; }
   .help { font-size: 11px; color: #555; margin-top: 8px; text-align: center; }
 </style>
 </head><body>
@@ -338,4 +338,5 @@ document.addEventListener('keydown', function(e) {
 // Initial draw
 drawPlot(null);
 </script>
+<script>if(new URLSearchParams(window.location.search).has("fit")){document.body.style.height="100vh";document.body.style.overflow="hidden";var s=document.createElement("style");s.textContent="#snapshot-img{max-height:calc(100vh - 500px)!important}";document.head.appendChild(s)}(function(){var lastH=0;new ResizeObserver(function(){var h=document.documentElement.scrollHeight;if(Math.abs(h-lastH)>2){lastH=h;window.parent.postMessage({type:"contentResize",height:h},"*")}}).observe(document.documentElement)})()</script>
 </body></html>

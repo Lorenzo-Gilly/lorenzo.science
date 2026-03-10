@@ -10,7 +10,7 @@
   select { font-family: monospace; font-size: 16px; padding: 6px 12px;
             background: #16213e; color: #eee; border: 1px solid #555;
             border-radius: 4px; cursor: pointer; }
-  iframe { width: 100%; height: calc(100vh - 120px); border: 1px solid #333;
+  iframe { width: 100%; height: 500px; border: 1px solid #333; overflow: hidden;
             border-radius: 4px; background: #0e1525; }
   .links { text-align: center; font-size: 12px; color: #666;
             margin: 8px 0; }
@@ -50,7 +50,7 @@
     return false;"
     style="color:#7ec8e3;font-size:13px;">open slider viewer</a>
 </div>
-<iframe id="viewer-frame" src=""></iframe>
+<iframe id="viewer-frame" src="" scrolling="no"></iframe>
 <div class="links">
   Static plots:
   <a href="#" onclick="loadPlot('N128_energy_T035_T039.png');return false;">energy T035_T039</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_clusterop_T035_T039.png');return false;">cluster OP T035_T039</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_energy_T040_T045.png');return false;">energy T040_T045</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_clusterop_T040_T045.png');return false;">cluster OP T040_T045</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_hysteresis_10K_50K.png');return false;">hysteresis</a>
@@ -62,9 +62,30 @@ function loadPlot(filename) {
 function loadTemp() {
   const tk = document.getElementById('temp-select').value;
   document.getElementById('viewer-frame').src =
-    'interactive_viewers/' + tk + '.html';
+    'interactive_viewers/' + tk + '.html' + (window._fitMode ? '?fit=1' : '');
 }
+// Auto-resize inner iframe based on content height
+var lastRelayed = 0;
+window.addEventListener("message", function(e) {
+  if (e.data && e.data.type === "contentResize" && !window._fitMode) {
+    var frame = document.getElementById("viewer-frame");
+    frame.style.height = e.data.height + "px";
+    requestAnimationFrame(function() {
+      var h = document.documentElement.scrollHeight;
+      if (Math.abs(h - lastRelayed) > 2) {
+        lastRelayed = h;
+        window.parent.postMessage({type: "contentResize", height: h}, "*");
+      }
+    });
+  }
+});
 // Load first temperature on page load
-window.addEventListener('load', loadTemp);
+window.addEventListener('load', function() {
+  if (window.self === window.top) {
+    document.getElementById('viewer-frame').style.height = 'calc(100vh - 120px)';
+    window._fitMode = true;
+  }
+  loadTemp();
+});
 </script>
 </body></html>

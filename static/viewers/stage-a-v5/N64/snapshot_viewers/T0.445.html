@@ -72,4 +72,5 @@ document.addEventListener('keydown', e => {
 });
 show(0);
 </script>
+<script>(function(){var lastH=0;new ResizeObserver(function(){var h=document.documentElement.scrollHeight;if(Math.abs(h-lastH)>2){lastH=h;window.parent.postMessage({type:"contentResize",height:h},"*")}}).observe(document.documentElement)})()</script>
 </body></html>
