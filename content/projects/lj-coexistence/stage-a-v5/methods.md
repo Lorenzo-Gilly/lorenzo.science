@@ -7,7 +7,7 @@ weight: 2
 
 # Experimental Setup & Plot Guide
 
-This page documents how the Stage A v5 diagnostic was run and how every
+This page documents how the Stage A diagnostic was run and how every
 plot and viewer was generated. If something on a graph looks odd, the
 answer is probably here.
 

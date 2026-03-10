@@ -26,4 +26,5 @@ shift from $N=64$ to $N=128$ is only 0.001 — negligible.
 
 ## Experiments
 
-- [**Stage A v5** — Hysteresis diagnostic with interactive viewers](stage-a-v5/)
+- [**Stage A** — Hysteresis diagnostic with interactive viewers](stage-a-v5/)
+- [**Stage B** — Equal-weight long runs for $T^*_\text{dew}$ determination](stage-b/)

@@ -1,5 +1,5 @@
 ---
-title: "Stage A v5 — Hysteresis Diagnostic"
+title: "Stage A — Hysteresis Diagnostic"
 weight: 1
 bookFlatSection: false
 bookCollapseSection: false
@@ -7,7 +7,7 @@ bookCollapseSection: false
 
 {{< katex />}}
 
-# Stage A v5 — Hysteresis Diagnostic
+# Stage A — Hysteresis Diagnostic
 
 No-equilibration MCMC diagnostic comparing gas-initialised and droplet-initialised
 chains across temperatures $T^* = 0.350$–$0.450$ (step 0.005). 5 independent
