@@ -1,12 +1,9 @@
 ---
 title: "Experimental Setup & Plot Guide"
-description: "MCMC parameters, initialisation protocols, and how to read the plots"
-date: 2026-03-09
-categories: ["2D LJ"]
-tags: ["methods", "MCMC"]
-math: true
-toc: true
+weight: 2
 ---
+
+{{< katex />}}
 
 # Experimental Setup & Plot Guide
 
