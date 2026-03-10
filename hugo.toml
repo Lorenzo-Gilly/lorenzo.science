@@ -1,0 +1,40 @@
+baseURL = 'https://lorenzo.science/'
+languageCode = 'en-gb'
+title = 'Lorenzo Gilly — Research Results'
+theme = 'hugo-theme-stack'
+
+[params]
+  mainSections = ["projects"]
+  favicon = ""
+  description = "Computational physics research results"
+
+  [params.sidebar]
+    emoji = ""
+    subtitle = "Computational Physics"
+
+  [params.article]
+    math = true
+    toc = true
+
+  [params.footer]
+    since = 2026
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects/"
+    weight = 2
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    lineNos = true
+    style = "github"
