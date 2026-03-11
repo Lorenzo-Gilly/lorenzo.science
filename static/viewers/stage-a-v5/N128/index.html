@@ -12,10 +12,6 @@
             border-radius: 4px; cursor: pointer; }
   iframe { width: 100%; height: 500px; border: 1px solid #333; overflow: hidden;
             border-radius: 4px; background: #0e1525; }
-  .links { text-align: center; font-size: 12px; color: #666;
-            margin: 8px 0; }
-  .links a { color: #7ec8e3; text-decoration: none; }
-  .links a:hover { text-decoration: underline; }
 </style>
 </head><body>
 <h1>Stage A &mdash; N=128 &mdash; T*=0.350&ndash;0.450</h1>
@@ -45,24 +41,27 @@
     <option value="T0.450">0.450</option>
   </select>
   &nbsp;&nbsp;
-  <a href="#" onclick="document.getElementById('viewer-frame').src=
-    'snapshot_viewers/' + document.getElementById('temp-select').value + '.html';
-    return false;"
-    style="color:#7ec8e3;font-size:13px;">open slider viewer</a>
+  <a href="#" id="mode-toggle" onclick="toggleMode(); return false;"
+    style="color:#7ec8e3;font-size:13px;">open snapshot viewer</a>
 </div>
 <iframe id="viewer-frame" src="" scrolling="no"></iframe>
-<div class="links">
-  Static plots:
-  <a href="#" onclick="loadPlot('N128_energy_T035_T039.png');return false;">energy T035_T039</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_clusterop_T035_T039.png');return false;">cluster OP T035_T039</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_energy_T040_T045.png');return false;">energy T040_T045</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_clusterop_T040_T045.png');return false;">cluster OP T040_T045</a> &nbsp;|&nbsp; <a href="#" onclick="loadPlot('N128_hysteresis_10K_50K.png');return false;">hysteresis</a>
-</div>
 <script>
-function loadPlot(filename) {
-  document.getElementById("viewer-frame").src = "plot_viewer.html?src=" + encodeURIComponent(filename);
+var _viewerMode = 'timeseries'; // 'timeseries' or 'snapshot'
+function toggleMode() {
+  if (_viewerMode === 'timeseries') {
+    _viewerMode = 'snapshot';
+    document.getElementById('mode-toggle').textContent = 'open timeseries viewer';
+  } else {
+    _viewerMode = 'timeseries';
+    document.getElementById('mode-toggle').textContent = 'open snapshot viewer';
+  }
+  loadTemp();
 }
 function loadTemp() {
   const tk = document.getElementById('temp-select').value;
+  var folder = _viewerMode === 'timeseries' ? 'interactive_viewers' : 'snapshot_viewers';
   document.getElementById('viewer-frame').src =
-    'interactive_viewers/' + tk + '.html' + (window._fitMode ? '?fit=1' : '');
+    folder + '/' + tk + '.html' + (window._fitMode ? '?fit=1' : '');
 }
 // Auto-resize inner iframe based on content height
 var lastRelayed = 0;

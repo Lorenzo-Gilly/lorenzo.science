@@ -1,4 +1,4 @@
-baseURL = 'https://lorenzo-gilly.github.io/lorenzo.science/'
+baseURL = 'https://lorenzo.science/'
 languageCode = 'en-gb'
 title = 'Lorenzo Gilly — Research Results'
 theme = 'hugo-book'

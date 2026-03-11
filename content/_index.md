@@ -11,7 +11,7 @@ Use the sidebar to navigate between projects and experiments.
 
 ## Projects
 
-### [2D Lennard-Jones Coexistence](/lorenzo.science/projects/lj-coexistence/)
+### [2D Lennard-Jones Coexistence](/projects/lj-coexistence/)
 
 Gas-liquid phase coexistence calibration for a 2D Lennard-Jones system.
 Dew-point determination at low gas density with interactive MCMC diagnostic viewers.

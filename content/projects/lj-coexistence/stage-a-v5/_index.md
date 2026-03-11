@@ -43,28 +43,28 @@ belong to the largest connected cluster.
 
 ### N = 32
 
-<iframe src="/lorenzo.science/viewers/stage-a-v5/N32/index.html" width="100%" height="600px"
+<iframe src="/viewers/stage-a-v5/N32/index.html" width="100%" height="600px"
   scrolling="no" style="border: 1px solid #333; border-radius: 6px; background: #1a1a2e; overflow: hidden;"></iframe>
 
-[Open full-page N=32 viewer](/lorenzo.science/viewers/stage-a-v5/N32/index.html)
+[Open full-page N=32 viewer](/viewers/stage-a-v5/N32/index.html)
 
 ---
 
 ### N = 64
 
-<iframe src="/lorenzo.science/viewers/stage-a-v5/N64/index.html" width="100%" height="600px"
+<iframe src="/viewers/stage-a-v5/N64/index.html" width="100%" height="600px"
   scrolling="no" style="border: 1px solid #333; border-radius: 6px; background: #1a1a2e; overflow: hidden;"></iframe>
 
-[Open full-page N=64 viewer](/lorenzo.science/viewers/stage-a-v5/N64/index.html)
+[Open full-page N=64 viewer](/viewers/stage-a-v5/N64/index.html)
 
 ---
 
 ### N = 128
 
-<iframe src="/lorenzo.science/viewers/stage-a-v5/N128/index.html" width="100%" height="600px"
+<iframe src="/viewers/stage-a-v5/N128/index.html" width="100%" height="600px"
   scrolling="no" style="border: 1px solid #333; border-radius: 6px; background: #1a1a2e; overflow: hidden;"></iframe>
 
-[Open full-page N=128 viewer](/lorenzo.science/viewers/stage-a-v5/N128/index.html)
+[Open full-page N=128 viewer](/viewers/stage-a-v5/N128/index.html)
 
 <script>
 window.addEventListener("message", function(e) {
@@ -102,34 +102,73 @@ The data shows the energy gap closing and the droplet fractions merging
 around $T^* \approx 0.40$–$0.41$.
 
 #### N = 32
-![N=32 Hysteresis](/lorenzo.science/viewers/stage-a-v5/N32/N32_hysteresis_10K_50K.png)
 
-| Energy time series ($T^* = 0.35$–$0.395$) | Energy time series ($T^* = 0.40$–$0.45$) |
-|---|---|
-| ![](/lorenzo.science/viewers/stage-a-v5/N32/N32_energy_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N32/N32_energy_T040_T045.png) |
+![N=32 Hysteresis](/viewers/stage-a-v5/N32/N32_hysteresis_10K_50K.png)
 
-| Energy + order parameter ($T^* = 0.35$–$0.395$) | Energy + order parameter ($T^* = 0.40$–$0.45$) |
-|---|---|
-| ![](/lorenzo.science/viewers/stage-a-v5/N32/N32_clusterop_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N32/N32_clusterop_T040_T045.png) |
+<details><summary>Energy time series — N = 32</summary>
+
+**$T^* = 0.350$–$0.395$**
+![](/viewers/stage-a-v5/N32/N32_energy_T035_T039.png)
+
+**$T^* = 0.400$–$0.450$**
+![](/viewers/stage-a-v5/N32/N32_energy_T040_T045.png)
+
+</details>
+
+<details><summary>Energy + order parameter — N = 32</summary>
+
+**$T^* = 0.350$–$0.395$**
+![](/viewers/stage-a-v5/N32/N32_clusterop_T035_T039.png)
+
+**$T^* = 0.400$–$0.450$**
+![](/viewers/stage-a-v5/N32/N32_clusterop_T040_T045.png)
+
+</details>
 
 #### N = 64
-![N=64 Hysteresis](/lorenzo.science/viewers/stage-a-v5/N64/N64_hysteresis_10K_50K.png)
 
-| Energy time series ($T^* = 0.35$–$0.395$) | Energy time series ($T^* = 0.40$–$0.45$) |
-|---|---|
-| ![](/lorenzo.science/viewers/stage-a-v5/N64/N64_energy_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N64/N64_energy_T040_T045.png) |
+![N=64 Hysteresis](/viewers/stage-a-v5/N64/N64_hysteresis_10K_50K.png)
 
-| Energy + order parameter ($T^* = 0.35$–$0.395$) | Energy + order parameter ($T^* = 0.40$–$0.45$) |
-|---|---|
-| ![](/lorenzo.science/viewers/stage-a-v5/N64/N64_clusterop_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N64/N64_clusterop_T040_T045.png) |
+<details><summary>Energy time series — N = 64</summary>
+
+**$T^* = 0.350$–$0.395$**
+![](/viewers/stage-a-v5/N64/N64_energy_T035_T039.png)
+
+**$T^* = 0.400$–$0.450$**
+![](/viewers/stage-a-v5/N64/N64_energy_T040_T045.png)
+
+</details>
+
+<details><summary>Energy + order parameter — N = 64</summary>
+
+**$T^* = 0.350$–$0.395$**
+![](/viewers/stage-a-v5/N64/N64_clusterop_T035_T039.png)
+
+**$T^* = 0.400$–$0.450$**
+![](/viewers/stage-a-v5/N64/N64_clusterop_T040_T045.png)
+
+</details>
 
 #### N = 128
-![N=128 Hysteresis](/lorenzo.science/viewers/stage-a-v5/N128/N128_hysteresis_10K_50K.png)
 
-| Energy time series ($T^* = 0.35$–$0.395$) | Energy time series ($T^* = 0.40$–$0.45$) |
-|---|---|
-| ![](/lorenzo.science/viewers/stage-a-v5/N128/N128_energy_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N128/N128_energy_T040_T045.png) |
+![N=128 Hysteresis](/viewers/stage-a-v5/N128/N128_hysteresis_10K_50K.png)
 
-| Energy + order parameter ($T^* = 0.35$–$0.395$) | Energy + order parameter ($T^* = 0.40$–$0.45$) |
-|---|---|
-| ![](/lorenzo.science/viewers/stage-a-v5/N128/N128_clusterop_T035_T039.png) | ![](/lorenzo.science/viewers/stage-a-v5/N128/N128_clusterop_T040_T045.png) |
+<details><summary>Energy time series — N = 128</summary>
+
+**$T^* = 0.350$–$0.395$**
+![](/viewers/stage-a-v5/N128/N128_energy_T035_T039.png)
+
+**$T^* = 0.400$–$0.450$**
+![](/viewers/stage-a-v5/N128/N128_energy_T040_T045.png)
+
+</details>
+
+<details><summary>Energy + order parameter — N = 128</summary>
+
+**$T^* = 0.350$–$0.395$**
+![](/viewers/stage-a-v5/N128/N128_clusterop_T035_T039.png)
+
+**$T^* = 0.400$–$0.450$**
+![](/viewers/stage-a-v5/N128/N128_clusterop_T040_T045.png)
+
+</details>
