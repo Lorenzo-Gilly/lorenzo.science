@@ -50,6 +50,15 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
+      - name: Install StatiCrypt
+        run: npm install -g staticrypt
+
+      - name: Encrypt HTML files with StatiCrypt
+        run: |
+          find ./public -name '*.html' -type f | while read -r file; do
+            staticrypt "$file" -p "${{ secrets.SITE_PASSWORD }}" --remember 30 --template-title "Lorenzo Gilly — Protected" -o "$file"
+          done
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
