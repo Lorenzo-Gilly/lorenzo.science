@@ -5,6 +5,7 @@ theme = 'hugo-book'
 
 enableGitInfo = false
 disablePathToLower = true
+disableKinds = ['sitemap', 'RSS']
 
 [params]
   BookTheme = 'auto'

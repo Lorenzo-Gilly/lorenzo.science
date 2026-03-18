@@ -182,25 +182,27 @@
             return exports;
         })());
 
-        const defined_staticrypt = staticryptInitiator.init(defined_staticryptConfig, function() {
-            const errorEl = document.getElementById("staticrypt-error");
-            errorEl.textContent = defined_templateError;
-            errorEl.classList.remove("hidden");
-        });
+        const templateConfig = {
+            rememberExpirationKey: "staticrypt_expiration",
+            rememberPassphraseKey: "staticrypt_passphrase",
+            replaceHtmlCallback: null,
+            clearLocalStorageCallback: null,
+        };
 
-        document.getElementById("staticrypt-form").addEventListener("submit", function(e) {
+        const defined_staticrypt = staticryptInitiator.init(defined_staticryptConfig, templateConfig);
+
+        document.getElementById("staticrypt-form").addEventListener("submit", async function(e) {
             e.preventDefault();
             var rememberBox = document.getElementById("staticrypt-remember");
             var isRemember = rememberBox && rememberBox.checked;
-            defined_staticrypt.handleDecryptionOfPage(
-                document.getElementById("staticrypt-password").value,
-                isRemember
-            );
+            var password = document.getElementById("staticrypt-password").value;
+            var { isSuccessful } = await defined_staticrypt.handleDecryptionOfPage(password, isRemember);
+            if (!isSuccessful) {
+                var errorEl = document.getElementById("staticrypt-error");
+                errorEl.textContent = defined_templateError;
+                errorEl.classList.remove("hidden");
+            }
         });
-
-        if (defined_isRememberEnabled) {
-            document.getElementById("staticrypt-remember-label").classList.remove("hidden");
-        }
 
         // Toggle password visibility
         (function() {
@@ -219,14 +221,18 @@
             });
         })();
 
-        // Auto-decrypt on load (remember-me or hash)
-        window.addEventListener("load", function() {
-            defined_staticrypt.handleDecryptOnLoad();
+        // Auto-decrypt on load (remember-me or hash), then show form if needed
+        window.addEventListener("load", async function() {
+            var { isSuccessful } = await defined_staticrypt.handleDecryptOnLoad();
+            if (!isSuccessful) {
+                document.getElementById("staticrypt_loading").classList.add("hidden");
+                document.getElementById("staticrypt_content").classList.remove("hidden");
+                document.getElementById("staticrypt-password").focus();
+                if (defined_isRememberEnabled) {
+                    document.getElementById("staticrypt-remember-label").classList.remove("hidden");
+                }
+            }
         });
-
-        // Show content after JS loads
-        document.getElementById("staticrypt_loading").classList.add("hidden");
-        document.getElementById("staticrypt_content").classList.remove("hidden");
     </script>
 </body>
 </html>
