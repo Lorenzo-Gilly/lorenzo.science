@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lorenzo Gilly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            height: 100%;
+            background: #000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            width: 340px;
+            padding: 40px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+        }
+
+        .password-container {
+            position: relative;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .password-container:focus-within {
+            border-color: #555;
+        }
+
+        input[type="password"],
+        input[type="text"] {
+            background: transparent;
+            border: none;
+            color: #e0e0e0;
+            font-size: 15px;
+            outline: none;
+            padding: 14px 44px 14px 16px;
+            width: 100%;
+        }
+
+        input::placeholder { color: #555; }
+
+        .toggle-password {
+            cursor: pointer;
+            height: 18px;
+            width: 18px;
+            opacity: 0.4;
+            padding: 14px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: opacity 0.2s;
+        }
+
+        .toggle-password:hover { opacity: 0.7; }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover { background: #e0e0e0; }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .remember input[type="checkbox"] {
+            margin-right: 8px;
+            accent-color: #555;
+        }
+
+        .error {
+            color: #e55;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .hidden { display: none !important; }
+
+        .spinner-container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #333;
+            border-top-color: #888;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div id="staticrypt_loading" class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="staticrypt_content" class="page hidden">
+        <div class="card">
+            <form id="staticrypt-form" action="#" method="post">
+                <div class="password-container">
+                    <input
+                        id="staticrypt-password"
+                        type="password"
+                        name="password"
+                        placeholder="/*[|template_placeholder|]*/0"
+                        autofocus
+                    />
+                    <img
+                        id="staticrypt-toggle-password"
+                        class="toggle-password"
+                        alt="/*[|template_toggle_show|]*/0"
+                        title="/*[|template_toggle_show|]*/0"
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMzguOCA1LjFDMjguNC0zLjEgMTMuMy0xLjIgNS4xIDkuMlMtMS4yIDM0LjcgOS4yIDQyLjlsNTkyIDQ2NGMxMC40IDguMiAyNS41IDYuMyAzMy43LTQuMXM2LjMtMjUuNS00LjEtMzMuN0w1MjUuNiAzODYuN2MzOS42LTQwLjYgNjYuNC04Ni4xIDc5LjktMTE4LjRjMy4zLTcuOSAzLjMtMTYuNyAwLTI0LjZjLTE0LjktMzUuNy00Ni4yLTg3LjctOTMtMTMxLjFDNDY1LjUgNjguOCA0MDAuOCAzMiAzMjAgMzJjLTY4LjIgMC0xMjUgMjYuMy0xNjkuMyA2MC44TDM4LjggNS4xek0yMjMuMSAxNDkuNUMyNDguNiAxMjYuMiAyODIuNyAxMTIgMzIwIDExMmM3OS41IDAgMTQ0IDY0LjUgMTQ0IDE0NGMwIDI0LjktNi4zIDQ4LjMtMTcuNCA2OC43TDQwOCAyOTQuNWM4LjQtMTkuMyAxMC42LTQxLjQgNC44LTYzLjNjLTExLjEtNDEuNS00Ny44LTY5LjQtODguNi03MS4xYy01LjgtLjItOS4yIDYuMS03LjQgMTEuN2MyLjEgNi40IDMuMyAxMy4yIDMuMyAyMC4zYzAgMTAuMi0yLjQgMTkuOC02LjYgMjguM2wtOTAuMy03MC44ek0zNzMgMzg5LjljLTE2LjQgNi41LTM0LjMgMTAuMS01MyAxMC4xYy03OS41IDAtMTQ0LTY0LjUtMTQ0LTE0NGMwLTYuOSAuNS0xMy42IDEuNC0yMC4yTDgzLjEgMTYxLjVDNjAuMyAxOTEuMiA0NCAyMjAuOCAzNC41IDI0My43Yy0zLjMgNy45LTMuMyAxNi43IDAgMjQuNmMxNC45IDM1LjcgNDYuMiA4Ny43IDkzIDEzMS4xQzE3NC41IDQ0My4yIDIzOS4yIDQ4MCAzMjAgNDgwYzQ3LjggMCA4OS45LTEyLjkgMTI2LjItMzIuNUwzNzMgMzg5Ljl6Ii8+PC9zdmc+"
+                    />
+                </div>
+
+                <label id="staticrypt-remember-label" class="remember hidden">
+                    <input id="staticrypt-remember" type="checkbox" name="remember" />
+                    /*[|template_remember|]*/0
+                </label>
+
+                <input type="submit" class="btn" value="/*[|template_button|]*/0" />
+            </form>
+
+            <p id="staticrypt-error" class="error hidden"></p>
+        </div>
+    </div>
+
+    <script>
+        const defined_staticryptConfig = /*[|staticrypt_config|]*/0;
+        const defined_isRememberEnabled = /*[|is_remember_enabled|]*/0;
+        const defined_templateError = "/*[|template_error|]*/0";
+        const defined_templateToggleShow = "/*[|template_toggle_show|]*/0";
+        const defined_templateToggleHide = "/*[|template_toggle_hide|]*/0";
+
+        const staticryptInitiator = ((function(){
+            const exports = {};
+            /*[|js_staticrypt|]*/0
+            return exports;
+        })());
+
+        const defined_staticrypt = staticryptInitiator.init(defined_staticryptConfig, function() {
+            const errorEl = document.getElementById("staticrypt-error");
+            errorEl.textContent = defined_templateError;
+            errorEl.classList.remove("hidden");
+        });
+
+        document.getElementById("staticrypt-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            var rememberBox = document.getElementById("staticrypt-remember");
+            var isRemember = rememberBox && rememberBox.checked;
+            defined_staticrypt.handleDecryptionOfPage(
+                document.getElementById("staticrypt-password").value,
+                isRemember
+            );
+        });
+
+        if (defined_isRememberEnabled) {
+            document.getElementById("staticrypt-remember-label").classList.remove("hidden");
+        }
+
+        // Toggle password visibility
+        (function() {
+            var toggle = document.getElementById("staticrypt-toggle-password");
+            var input = document.getElementById("staticrypt-password");
+            toggle.addEventListener("click", function() {
+                if (input.type === "password") {
+                    input.type = "text";
+                    toggle.alt = defined_templateToggleHide;
+                    toggle.title = defined_templateToggleHide;
+                } else {
+                    input.type = "password";
+                    toggle.alt = defined_templateToggleShow;
+                    toggle.title = defined_templateToggleShow;
+                }
+            });
+        })();
+
+        // Auto-decrypt on load (remember-me or hash)
+        window.addEventListener("load", function() {
+            defined_staticrypt.handleDecryptOnLoad();
+        });
+
+        // Show content after JS loads
+        document.getElementById("staticrypt_loading").classList.add("hidden");
+        document.getElementById("staticrypt_content").classList.remove("hidden");
+    </script>
+</body>
+</html>

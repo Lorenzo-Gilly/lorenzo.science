@@ -57,7 +57,7 @@ jobs:
         run: |
           find ./public -name '*.html' -type f | while read -r file; do
             dir=$(dirname "$file")
-            staticrypt "$file" -p "${{ secrets.SITE_PASSWORD }}" -d "$dir" --remember 360 --template-title "Lorenzo Gilly — Protected"
+            staticrypt "$file" -p "${{ secrets.SITE_PASSWORD }}" -d "$dir" --remember 360 -t staticrypt-template.html
           done
 
       - name: Upload artifact
