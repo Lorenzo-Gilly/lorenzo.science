@@ -56,7 +56,8 @@ jobs:
       - name: Encrypt HTML files with StatiCrypt
         run: |
           find ./public -name '*.html' -type f | while read -r file; do
-            staticrypt "$file" -p "${{ secrets.SITE_PASSWORD }}" --remember 360 --template-title "Lorenzo Gilly — Protected" -o "$file"
+            dir=$(dirname "$file")
+            staticrypt "$file" -p "${{ secrets.SITE_PASSWORD }}" -d "$dir" --remember 360 --template-title "Lorenzo Gilly — Protected"
           done
 
       - name: Upload artifact
