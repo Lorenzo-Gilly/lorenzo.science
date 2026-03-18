@@ -1,0 +1,18 @@
+<script>
+(function() {
+  var AUTH_KEY = "lorenzo_auth";
+  var MAX_AGE_MS = 360 * 24 * 60 * 60 * 1000; // 360 days
+
+  // Homepage sets the token after StatiCrypt decryption — don't gate it
+  if (window.location.pathname === "/" || window.location.pathname === "/index.html") return;
+
+  // Viewer files are ungated (loaded in iframes from protected pages)
+  if (window.location.pathname.indexOf("/viewers/") === 0) return;
+
+  var ts = localStorage.getItem(AUTH_KEY);
+  if (!ts || (Date.now() - parseInt(ts, 10)) > MAX_AGE_MS) {
+    document.documentElement.style.display = "none";
+    window.location.replace("/");
+  }
+})();
+</script>

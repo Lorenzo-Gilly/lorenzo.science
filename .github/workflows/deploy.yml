@@ -53,12 +53,9 @@ jobs:
       - name: Install StatiCrypt
         run: npm install -g staticrypt
 
-      - name: Encrypt HTML files with StatiCrypt
+      - name: Encrypt homepage with StatiCrypt
         run: |
-          find ./public -name '*.html' -type f -not -path '*/viewers/*' | while read -r file; do
-            dir=$(dirname "$file")
-            staticrypt "$file" -p "${{ secrets.SITE_PASSWORD }}" -d "$dir" --remember 360 -t staticrypt-template.html
-          done
+          staticrypt ./public/index.html -p "${{ secrets.SITE_PASSWORD }}" -d ./public --remember 360 -t staticrypt-template.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
