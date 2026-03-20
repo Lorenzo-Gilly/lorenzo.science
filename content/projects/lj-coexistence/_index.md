@@ -21,3 +21,4 @@ for calibrating a normalizing flow model of the gas-liquid transition.
 ## Experiments
 
 - [**Stage A** — Hysteresis diagnostic with interactive viewers](stage-a-v5/)
+- [**Stage A v6** — Density grid scan ($\rho^* = 0.02$–$0.12$, $N = 128$)](stage-a-v6/)

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<title>Stage A v6 — N=128 density grid viewer</title>
+<style>
+  body { font-family: 'Courier New', monospace; background: #1a1a2e;
+         color: #eee; margin: 0; padding: 16px; }
+  h1 { text-align: center; font-size: 20px; margin: 8px 0; }
+  .controls { text-align: center; margin: 12px 0; display: flex;
+              justify-content: center; align-items: center; gap: 16px;
+              flex-wrap: wrap; }
+  select { font-family: monospace; font-size: 16px; padding: 6px 12px;
+            background: #16213e; color: #eee; border: 1px solid #555;
+            border-radius: 4px; cursor: pointer; }
+  label { font-size: 14px; margin-right: 4px; }
+  iframe { width: 100%; height: 500px; border: 1px solid #333; overflow: hidden;
+            border-radius: 4px; background: #0e1525; }
+  .mode-switch { display: inline-flex; border: 1px solid #555; border-radius: 4px;
+                  overflow: hidden; font-size: 13px; }
+  .mode-switch button { font-family: monospace; background: #16213e; color: #888;
+                         border: none; padding: 5px 12px; cursor: pointer;
+                         transition: background 0.15s, color 0.15s; }
+  .mode-switch button.active { background: #7ec8e3; color: #1a1a2e; font-weight: bold; }
+  .mode-switch button:not(.active):hover { background: #1e2d4a; color: #ccc; }
+  .links { text-align: center; font-size: 12px; color: #666;
+            margin: 8px 0; }
+  .links a { color: #7ec8e3; text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+</style>
+</head><body>
+<h1>Stage A v6 &mdash; N=128 &mdash; Density Grid Scan</h1>
+<div class="controls">
+  <span>
+    <label>Density:</label>
+    <select id="rho-select" onchange="loadViewer()">
+      <option value="rho0.02">0.02</option>
+      <option value="rho0.04">0.04</option>
+      <option value="rho0.06">0.06</option>
+      <option value="rho0.08" selected>0.08</option>
+      <option value="rho0.10">0.10</option>
+      <option value="rho0.12">0.12</option>
+    </select>
+  </span>
+  <span>
+    <label>Temperature:</label>
+    <select id="temp-select" onchange="loadViewer()">
+      <option value="T0.35">0.35</option>
+      <option value="T0.36">0.36</option>
+      <option value="T0.37">0.37</option>
+      <option value="T0.38">0.38</option>
+      <option value="T0.39">0.39</option>
+      <option value="T0.40" selected>0.40</option>
+      <option value="T0.41">0.41</option>
+      <option value="T0.42">0.42</option>
+      <option value="T0.43">0.43</option>
+      <option value="T0.44">0.44</option>
+      <option value="T0.45">0.45</option>
+      <option value="T0.46">0.46</option>
+      <option value="T0.47">0.47</option>
+      <option value="T0.48">0.48</option>
+      <option value="T0.49">0.49</option>
+      <option value="T0.50">0.50</option>
+    </select>
+  </span>
+  <div class="mode-switch">
+    <button id="btn-timeseries" class="active" onclick="setMode('timeseries')">timeseries</button>
+    <button id="btn-snapshot" onclick="setMode('snapshot')">snapshot</button>
+  </div>
+</div>
+<iframe id="viewer-frame" src="" scrolling="no"></iframe>
+<div class="links">
+  Per-density plots:
+  <a href="#" onclick="openPlot('hysteresis'); return false;">hysteresis</a>
+  &nbsp;|&nbsp;
+  <a href="#" onclick="openPlot('energy_T035_T042'); return false;">energy T035-T042</a>
+  &nbsp;|&nbsp;
+  <a href="#" onclick="openPlot('energy_T043_T050'); return false;">energy T043-T050</a>
+  &nbsp;|&nbsp;
+  <a href="coexistence_summary.png" target="_blank">coexistence summary</a>
+</div>
+<script>
+var _viewerMode = 'timeseries';
+function setMode(mode) {
+  _viewerMode = mode;
+  document.getElementById('btn-timeseries').className = mode === 'timeseries' ? 'active' : '';
+  document.getElementById('btn-snapshot').className = mode === 'snapshot' ? 'active' : '';
+  loadViewer();
+}
+function getRho() { return document.getElementById('rho-select').value; }
+function getTemp() { return document.getElementById('temp-select').value; }
+function loadViewer() {
+  var rho = getRho();
+  var temp = getTemp();
+  var folder = _viewerMode === 'timeseries' ? 'interactive_viewers' : 'snapshot_viewers';
+  document.getElementById('viewer-frame').src =
+    rho + '/' + folder + '/' + temp + '.html' + (window._fitMode ? '?fit=1' : '');
+}
+function openPlot(name) {
+  var rho = getRho();
+  if (name === 'hysteresis') {
+    window.open(rho + '/N128_hysteresis_' + rho + '_10K_50K.png', '_blank');
+  } else {
+    window.open(rho + '/N128_' + name + '.png', '_blank');
+  }
+}
+// Auto-resize inner iframe based on content height
+var lastRelayed = 0;
+window.addEventListener("message", function(e) {
+  if (e.data && e.data.type === "contentResize" && !window._fitMode) {
+    var frame = document.getElementById("viewer-frame");
+    frame.style.height = e.data.height + "px";
+    requestAnimationFrame(function() {
+      var h = document.documentElement.scrollHeight;
+      if (Math.abs(h - lastRelayed) > 2) {
+        lastRelayed = h;
+        window.parent.postMessage({type: "contentResize", height: h}, "*");
+      }
+    });
+  }
+});
+// Full-page mode: expand iframe to fill viewport
+window.addEventListener('load', function() {
+  if (window.self === window.top) {
+    document.getElementById('viewer-frame').style.height = 'calc(100vh - 160px)';
+    window._fitMode = true;
+  }
+  loadViewer();
+});
+</script>
+</body></html>
